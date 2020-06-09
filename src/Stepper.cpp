@@ -1,9 +1,25 @@
 #include "Stepper.h"
 #include "core_pins.h"
-
+Stepper::Stepper()
+{
+    
+}
 Stepper::Stepper(const int _stepPin, const int _dirPin)
     : current(0),  stepPin(_stepPin), dirPin(_dirPin)
 {
+    setStepPinPolarity(HIGH);
+    setInverseRotation(false);
+    setAcceleration(aDefault);
+    setMaxSpeed(vMaxDefault);
+
+    pinMode(stepPin, OUTPUT);
+    pinMode(dirPin, OUTPUT);
+}
+
+void Stepper::setup(const int StepPin, const int DirPin){
+    current = 0;
+    stepPin = StepPin;
+    dirPin = DirPin;
     setStepPinPolarity(HIGH);
     setInverseRotation(false);
     setAcceleration(aDefault);

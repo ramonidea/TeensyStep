@@ -11,7 +11,10 @@ class Stepper
     static const uint32_t aDefault;    // reasonably low (~0.5s for reaching the default speed)
 
   public:
+    Stepper();
     Stepper(const int StepPin, const int DirPin);
+
+    void setup(const int StepPin, const int DirPin);
 
     Stepper &setMaxSpeed(int32_t speed);   // steps/s
     Stepper &setAcceleration(uint32_t _a); // steps/s^2
@@ -52,7 +55,7 @@ class Stepper
     volatile uint32_t *stepPinInactiveReg;
     volatile uint32_t *dirPinCwReg;
     volatile uint32_t *dirPinCcwReg;
-    const int stepPin, dirPin;
+    int stepPin, dirPin;
 
     // Friends
     template <typename a, typename t>
